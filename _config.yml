@@ -1,0 +1,7 @@
+# Site settings
+title: Bnjjj's blog
+description: A blog about me, my passion, my work as a software developer @OVH
+keywords: developer, development, tech
+author: Bnjjj
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://www.benjamincoenen.ovh" # the base hostname & protocol for your site
