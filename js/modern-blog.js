@@ -100,14 +100,28 @@ var demo = (function(window, undefined) {
   function _bindCards() {
 
     var elements = $(SELECTORS.card);
+    var index = null;
+    var permalink;
+    console.log('length : ', window.location.href.split('#').length);
+    if (window.location.href.split('#').length !== 1) {
+      permalink = window.location.href.split('#').pop();
+    }
+    var imageElt = null;
+    console.log('permarlink', permalink);
 
     $.each(elements, function(card, i) {
 
       var instance = new Card(i, card);
+      var image = $(card).find('.' + permalink);
 
       layout[i] = {
         card: instance
-      };
+      };  
+
+      if (permalink && permalink !== 'blog' && image.length) {
+        index = i;
+        imageElt = image;
+      }
 
       var cardImage = $(card).find(SELECTORS.cardImage);
       var cardClose = $(card).find(SELECTORS.cardClose);
@@ -115,6 +129,12 @@ var demo = (function(window, undefined) {
       $(cardImage).on('click', _playSequence.bind(this, true, i));
       $(cardClose).on('click', _playSequence.bind(this, false, i));
     });
+
+    if (index != null && imageElt) {
+      setTimeout(function () {
+        _playSequence(true, index, {target: imageElt});
+      }, 300);
+    }
   };
 
   /**

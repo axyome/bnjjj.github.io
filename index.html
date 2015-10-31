@@ -28,7 +28,7 @@ layout: compress
     <body class="body">
         <div class="container">
             <header class="header">
-            <h1>Bnjjj's blog<span>A blog about me, my passion, my work as a software developer <a href="http://ovh.com" target="_blank">@OVH</a></span></h1>
+            <h1>Bnjjj's blog<span>Un blog à propos de moi, mes passions et mon métier (développeur chez <a href="http://ovh.com" target="_blank">@OVH</a>)</span></h1>
                 <nav class="links">
                     <a href="https://twitter.com/BnJ25"><i class="fa fa-twitter-square fa-3x"></i></a>
                     <a href="https://github.com/bnjjj"><i class="fa fa-github-square fa-3x"></i></a>
@@ -49,7 +49,7 @@ layout: compress
                                 <polygon class="clip" points="0,1200 0,0 1920,0 1920,1200"></polygon>
                                 </clipPath>
                                 </defs>
-                                <image clip-path="url(#{{ post.subtitle | slugify }})" width="1920" height="1200" xlink:href="{{ post.image }}"></image>
+                                <image class="{{ post.anchor }}" clip-path="url(#{{ post.subtitle | slugify }})" width="1920" height="1200" xlink:href="{{ post.image }}"></image>
                             </svg>
                             <div class="card__content" id="{{post.anchor}}">
                             <i class="card__btn-close fa fa-times"></i>
@@ -63,7 +63,9 @@ layout: compress
                                         <span class="meta__author">{{ post.author }}</span>
                                         <span class="meta__date">{{ post.date | date: "%b %-d, %Y" }}</span>
                                     </div>
-                                    {{ post.content }}
+                                    <div class="blog-content">
+                                        {{ post.content }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -79,6 +81,6 @@ layout: compress
         <script src="js/vendors/ScrollToPlugin.min.js"></script>
         <script src="js/vendors/cash.min.js"></script>
         <script src="js/card-modern-blog.min.js"></script>
-        <script src="js/modern-blog.min.js"></script>
+        <script src="js/modern-blog.js"></script>
     </body>
 </html>

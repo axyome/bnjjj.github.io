@@ -49,10 +49,10 @@ layout: compress
                                 <polygon class="clip" points="0,1200 0,0 1920,0 1920,1200"></polygon>
                                 </clipPath>
                                 </defs>
-                                <image class="{{ post.anchor }}" clip-path="url(#{{ post.subtitle | slugify }})" width="1920" height="1200" xlink:href="../{{ post.image }}"></image>
+                                <image class="{{ post.permalink | slugify}}" clip-path="url(#{{ post.subtitle | slugify }})" width="1920" height="1200" xlink:href="../{{ post.image }}"></image>
                             </svg>
                             <div class="card__content" id="{{post.anchor}}">
-                                <a href="/"><i class="card__btn-close fa fa-times"></i></a>
+                                <i class="card__btn-close fa fa-times"></i>
                                 <div class="card__caption">
                                     <h2 class="card__title">{{ post.title }}</h2>
                                     <p class="card__subtitle">{{ post.subtitle }}</p>

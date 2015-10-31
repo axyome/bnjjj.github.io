@@ -12,7 +12,7 @@ var demo = (function(window, undefined) {
     pattern: '.pattern',
     card: '.card',
     cardImage: '.card__image',
-    cardClose: '.card__btn-close'
+    cardClose: '.card__btn-close',
   };
 
   /**
@@ -100,27 +100,34 @@ var demo = (function(window, undefined) {
   function _bindCards() {
 
     var elements = $(SELECTORS.card);
-    var image;
-    var cardImage;
-    var cardClose;
-    var index;
+    var index = null;
     var permalink = window.location.href.split('/').pop();
+    var imageElt = null;
 
     $.each(elements, function(card, i) {
 
       var instance = new Card(i, card);
+      var image = $(card).find('.' + permalink);
 
       layout[i] = {
         card: instance
-      };
+      };  
 
-      if ($(card).find('.' + permalink)) {
+      if (permalink && permalink !== 'blog' && image.length) {
         index = i;
+        imageElt = image;
       }
+
+      var cardImage = $(card).find(SELECTORS.cardImage);
+      var cardClose = $(card).find(SELECTORS.cardClose);
+
+      $(cardImage).on('click', _playSequence.bind(this, true, i));
+      $(cardClose).on('click', _playSequence.bind(this, false, i));
     });
 
-    _playSequence(true, index);
-
+    if (index != null && imageElt) {
+      _playSequence(true, index, {target: imageElt});
+    }
   };
 
   /**
@@ -131,7 +138,7 @@ var demo = (function(window, undefined) {
    * @private
    *
    */
-  function _playSequence(isOpenClick, id) {
+  function _playSequence(isOpenClick, id, e) {
 
     var card = layout[id].card;
 
@@ -146,7 +153,7 @@ var demo = (function(window, undefined) {
     if (!card.isOpen) {
       // Open sequence.
 
-      _setPatternBgImg($('image'));
+      _setPatternBgImg(e.target);
 
       sequence.add(tweenOtherCards);
       sequence.add(card.openCard(_onCardMove), 0);
