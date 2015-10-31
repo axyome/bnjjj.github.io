@@ -102,12 +102,10 @@ var demo = (function(window, undefined) {
     var elements = $(SELECTORS.card);
     var index = null;
     var permalink;
-    console.log('length : ', window.location.href.split('#').length);
     if (window.location.href.split('#').length !== 1) {
       permalink = window.location.href.split('#').pop();
     }
     var imageElt = null;
-    console.log('permarlink', permalink);
 
     $.each(elements, function(card, i) {
 
@@ -126,26 +124,31 @@ var demo = (function(window, undefined) {
       var cardImage = $(card).find(SELECTORS.cardImage);
       var cardClose = $(card).find(SELECTORS.cardClose);
 
-      $(cardImage).on('click', _playSequence.bind(this, true, i));
-      $(cardClose).on('click', _playSequence.bind(this, false, i));
+      $(cardImage).on('click', function (e) {
+        _playSequence(true, i, $(e.target));
+      });
+
+      $(cardClose).on('click', function (e) {
+        _playSequence(false, i, $(e.target));
+      });
     });
 
     if (index != null && imageElt) {
       setTimeout(function () {
-        _playSequence(true, index, {target: imageElt});
+        _playSequence(true, index, imageElt);
       }, 300);
     }
-  };
+  }
 
   /**
    * Create a sequence for the open or close animation and play.
    * @param {boolean} isOpenClick Flag to detect when it's a click to open.
    * @param {number} id The id of the clicked card.
-   * @param {Event} e The event object.
+   * @param {Element} imageElt The event object.
    * @private
    *
    */
-  function _playSequence(isOpenClick, id, e) {
+  function _playSequence(isOpenClick, id, imageElt) {
 
     var card = layout[id].card;
 
@@ -159,9 +162,10 @@ var demo = (function(window, undefined) {
 
     if (!card.isOpen) {
       // Open sequence.
-
-      _setPatternBgImg(e.target);
-
+      if (window.location.href.split('#').length === 1) {
+        history.pushState({}, null, window.location.href + '#' + imageElt.attr('class'));
+      }
+      _setPatternBgImg(imageElt);
       sequence.add(tweenOtherCards);
       sequence.add(card.openCard(_onCardMove), 0);
 

@@ -152,7 +152,6 @@ var demo = (function(window, undefined) {
 
     if (!card.isOpen) {
       // Open sequence.
-
       _setPatternBgImg(e.target);
 
       sequence.add(tweenOtherCards);
