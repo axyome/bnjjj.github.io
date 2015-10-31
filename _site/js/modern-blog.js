@@ -175,6 +175,9 @@ var demo = (function(window, undefined) {
       var closeCard = card.closeCard();
       var position = closeCard.duration() * 0.8; // 80% of close card tween.
 
+      if (window.location.href.split('#').length === 2) {
+        history.pushState({}, null, window.location.href.split('#')[0]);
+      }
       sequence.add(closeCard);
       sequence.add(tweenOtherCards, position);
     }
