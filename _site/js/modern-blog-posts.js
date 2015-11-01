@@ -162,6 +162,8 @@ var demo = (function(window, undefined) {
     var tweenOtherCards = _showHideOtherCards(id);
     if (!card.isOpen) {
       // Open sequence.
+      ga('send', 'pageview', '/' + imageElt.attr('class'));
+      
       if (!permalink) {
         history.pushState({}, null, window.location.href + imageElt.attr('class'));
       }
