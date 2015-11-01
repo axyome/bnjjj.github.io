@@ -160,7 +160,6 @@ var demo = (function(window, undefined) {
     var sequence = new TimelineLite({paused: true});
 
     var tweenOtherCards = _showHideOtherCards(id);
-    console.log('iciii');
     if (!card.isOpen) {
       // Open sequence.
       if (!permalink) {
@@ -172,13 +171,9 @@ var demo = (function(window, undefined) {
 
     } else {
       // Close sequence.
-      console.log('coucou');
       var closeCard = card.closeCard();
       var position = closeCard.duration() * 0.8; // 80% of close card tween.
-      console.log('permalink 2 : ', permalink);
-      if (permalink) {
-        history.pushState({}, null, window.location.origin);
-      }
+      history.pushState({}, null, window.location.origin);
       sequence.add(closeCard);
       sequence.add(tweenOtherCards, position);
     }
