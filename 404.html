@@ -1,5 +1,7 @@
 ---
 layout: compress
+title: 404
+permalink: /404.html
 ---
 <!DOCTYPE html>
 <html lang="fr" class="no-js">
@@ -40,38 +42,7 @@ layout: compress
                 <div class="pattern pattern--hidden"></div>
                 <!-- cards -->
                 <div class="wrapper">
-                    {% for post in site.posts %}
-                        <div class="card">
-                            <div class="card__container card__container--closed">
-                                <svg class="card__image" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1920 1200" preserveAspectRatio="xMidYMid slice">
-                                    <defs>
-                                    <clipPath id="{{ post.subtitle | slugify }}">
-                                <polygon class="clip" points="0,1200 0,0 1920,0 1920,1200"></polygon>
-                                </clipPath>
-                                </defs>
-                                <image class="{{ post.anchor }}" clip-path="url(#{{ post.subtitle | slugify }})" width="1920" height="1200" xlink:href="{{ post.image }}"></image>
-                            </svg>
-                            <div class="card__content" id="{{post.anchor}}">
-                            <i class="card__btn-close fa fa-times"></i>
-                                <div class="card__caption">
-                                    <h2 class="card__title">{{ post.title }}</h2>
-                                    <p class="card__subtitle">{{ post.subtitle }}</p>
-                                </div>
-                                <div class="card__copy">
-                                    <div class="meta">
-                                        <img class="meta__avatar" src="{{ post.avatar }}" />
-                                        <span class="meta__author">{{ post.author }}</span>
-                                        <span class="meta__date">{{ post.date | date: "%b %-d, %Y" }}</span>
-                                    </div>
-                                    <div class="blog-content">
-                                        {{ post.content }}
-                                    </div>
-                                    {% include twitter.html %}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                {% endfor %}
+                   <h1 style="text-align:center;">Oups ! Houston nous avons perdu une page !</h1>
                 <!-- /cards -->
             </div>
         </div>

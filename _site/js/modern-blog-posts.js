@@ -107,40 +107,51 @@ var demo = (function(window, undefined) {
     $.each(elements, function(card, i) {
 
       var instance = new Card(i, card);
-      var image = $(card).find('.' + permalink);
+      var image;
 
       layout[i] = {
         card: instance
       };  
 
-      if (permalink && permalink !== 'blog' && image.length) {
-        index = i;
-        imageElt = image;
+      if (permalink && permalink !== 'blog' && permalink !== '') {
+        image = $(card).find('.' + permalink);
+        if (image.length) {
+          index = i;
+          imageElt = image;
+        }
       }
 
       var cardImage = $(card).find(SELECTORS.cardImage);
       var cardClose = $(card).find(SELECTORS.cardClose);
 
-      $(cardImage).on('click', _playSequence.bind(this, true, i));
-      $(cardClose).on('click', _playSequence.bind(this, false, i));
+      $(cardImage).on('click', function (e) {
+        _playSequence(true, i, $(e.target));
+      });
+
+      $(cardClose).on('click', function (e) {
+        _playSequence(false, i, $(e.target));
+      });
     });
 
     if (index != null && imageElt) {
-      _playSequence(true, index, {target: imageElt});
+      setTimeout(function () {
+        _playSequence(true, index, imageElt);
+      }, 300);
     }
-  };
+  }
 
   /**
    * Create a sequence for the open or close animation and play.
    * @param {boolean} isOpenClick Flag to detect when it's a click to open.
    * @param {number} id The id of the clicked card.
-   * @param {Event} e The event object.
+   * @param {Element} imageElt The event object.
    * @private
    *
    */
-  function _playSequence(isOpenClick, id, e) {
+  function _playSequence(isOpenClick, id, imageElt) {
 
     var card = layout[id].card;
+    var permalink = window.location.href.split('/').pop();
 
     // Prevent when card already open and user click on image.
     if (card.isOpen && isOpenClick) return;
@@ -149,20 +160,25 @@ var demo = (function(window, undefined) {
     var sequence = new TimelineLite({paused: true});
 
     var tweenOtherCards = _showHideOtherCards(id);
-
+    console.log('iciii');
     if (!card.isOpen) {
       // Open sequence.
-      _setPatternBgImg(e.target);
-
+      if (!permalink) {
+        history.pushState({}, null, window.location.href + imageElt.attr('class'));
+      }
+      _setPatternBgImg(imageElt);
       sequence.add(tweenOtherCards);
       sequence.add(card.openCard(_onCardMove), 0);
 
     } else {
       // Close sequence.
-
+      console.log('coucou');
       var closeCard = card.closeCard();
       var position = closeCard.duration() * 0.8; // 80% of close card tween.
-
+      console.log('permalink 2 : ', permalink);
+      if (permalink) {
+        history.pushState({}, null, window.location.origin);
+      }
       sequence.add(closeCard);
       sequence.add(tweenOtherCards, position);
     }

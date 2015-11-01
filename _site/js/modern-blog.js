@@ -101,24 +101,24 @@ var demo = (function(window, undefined) {
 
     var elements = $(SELECTORS.card);
     var index = null;
-    var permalink;
-    if (window.location.href.split('#').length !== 1) {
-      permalink = window.location.href.split('#').pop();
-    }
+    var permalink = window.location.href.split('#').pop() || window.location.href.split('/').pop();
     var imageElt = null;
 
     $.each(elements, function(card, i) {
 
       var instance = new Card(i, card);
-      var image = $(card).find('.' + permalink);
+      var image;
 
       layout[i] = {
         card: instance
       };  
 
-      if (permalink && permalink !== 'blog' && image.length) {
-        index = i;
-        imageElt = image;
+      if (permalink && permalink !== 'blog' && permalink !== '') {
+        image = $(card).find('.' + permalink);
+        if (image.length) {
+          index = i;
+          imageElt = image;
+        }
       }
 
       var cardImage = $(card).find(SELECTORS.cardImage);
@@ -151,6 +151,7 @@ var demo = (function(window, undefined) {
   function _playSequence(isOpenClick, id, imageElt) {
 
     var card = layout[id].card;
+    var permalink = window.location.href.split('/').pop();
 
     // Prevent when card already open and user click on image.
     if (card.isOpen && isOpenClick) return;
@@ -159,11 +160,11 @@ var demo = (function(window, undefined) {
     var sequence = new TimelineLite({paused: true});
 
     var tweenOtherCards = _showHideOtherCards(id);
-
+    console.log('iciii');
     if (!card.isOpen) {
       // Open sequence.
-      if (window.location.href.split('#').length === 1) {
-        history.pushState({}, null, window.location.href + '#' + imageElt.attr('class'));
+      if (!permalink) {
+        history.pushState({}, null, window.location.href + imageElt.attr('class'));
       }
       _setPatternBgImg(imageElt);
       sequence.add(tweenOtherCards);
@@ -171,12 +172,12 @@ var demo = (function(window, undefined) {
 
     } else {
       // Close sequence.
-
+      console.log('coucou');
       var closeCard = card.closeCard();
       var position = closeCard.duration() * 0.8; // 80% of close card tween.
-
-      if (window.location.href.split('#').length === 2) {
-        history.pushState({}, null, window.location.href.split('#')[0]);
+      console.log('permalink 2 : ', permalink);
+      if (permalink) {
+        history.pushState({}, null, window.location.origin);
       }
       sequence.add(closeCard);
       sequence.add(tweenOtherCards, position);

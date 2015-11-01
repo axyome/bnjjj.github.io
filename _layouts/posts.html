@@ -2,7 +2,7 @@
 layout: compress
 ---
 <!DOCTYPE html>
-<html lang="en" class="no-js">
+<html lang="fr" class="no-js">
     <head>
         <meta charset="UTF-8" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -63,8 +63,10 @@ layout: compress
                                         <span class="meta__author">{{ post.author }}</span>
                                         <span class="meta__date">{{ post.date | date: "%b %-d, %Y" }}</span>
                                     </div>
-                                    {{ post.content }}
-                                </div>
+                                    <div class="blog-content">
+                                        {{ post.content }}
+                                    </div>
+                                {% include twitter.html %}   
                             </div>
                         </div>
                     </div>
@@ -80,5 +82,6 @@ layout: compress
         <script src="../js/vendors/cash.min.js"></script>
         <script src="../js/card-modern-blog.min.js"></script>
         <script src="../js/modern-blog-posts.js"></script>
+        {% include google-analytics.html %}
     </body>
 </html>
