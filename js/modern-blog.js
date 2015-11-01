@@ -101,8 +101,14 @@ var demo = (function(window, undefined) {
 
     var elements = $(SELECTORS.card);
     var index = null;
-    var permalink = window.location.href.split('#').pop() || window.location.href.split('/').pop();
+    var permalink;
     var imageElt = null;
+
+    if (window.location.href.split('#').length > 1 && window.location.href.split('#').pop() !== window.location.origin) {
+      permalink = window.location.href.split('#').pop();
+    } else {
+      permalink = window.location.href.split('/').pop();
+    }
 
     $.each(elements, function(card, i) {
 
@@ -113,7 +119,7 @@ var demo = (function(window, undefined) {
         card: instance
       };  
 
-      if (permalink && permalink !== 'blog' && permalink !== '') {
+      if (permalink && permalink !== window.location.origin && permalink !== '') {
         image = $(card).find('.' + permalink);
         if (image.length) {
           index = i;
