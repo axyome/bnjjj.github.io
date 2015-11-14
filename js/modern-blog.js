@@ -107,7 +107,7 @@ var demo = (function(window, undefined) {
     if (window.location.href.split('#').length > 1 && window.location.href.split('#').pop() !== window.location.origin) {
       permalink = window.location.href.split('#').pop();
     } else {
-      permalink = window.location.href.split('/').pop();
+      permalink = window.location.pathname.split('/')[1];
     }
 
     $.each(elements, function(card, i) {
@@ -157,7 +157,7 @@ var demo = (function(window, undefined) {
   function _playSequence(isOpenClick, id, imageElt) {
 
     var card = layout[id].card;
-    var permalink = window.location.href.split('/').pop();
+    var permalink = window.location.pathname.split('/')[1];
 
     // Prevent when card already open and user click on image.
     if (card.isOpen && isOpenClick) return;

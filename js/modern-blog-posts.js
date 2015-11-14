@@ -101,7 +101,7 @@ var demo = (function(window, undefined) {
 
     var elements = $(SELECTORS.card);
     var index = null;
-    var permalink = window.location.href.split('/').pop();
+    var permalink = window.location.pathname.split('/')[1];
     var imageElt = null;
 
     $.each(elements, function(card, i) {
@@ -151,7 +151,8 @@ var demo = (function(window, undefined) {
   function _playSequence(isOpenClick, id, imageElt) {
 
     var card = layout[id].card;
-    var permalink = window.location.href.split('/').pop();
+    var permalink = window.location.pathname.split('/')[1];
+
 
     // Prevent when card already open and user click on image.
     if (card.isOpen && isOpenClick) return;
