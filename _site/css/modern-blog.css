@@ -360,3 +360,17 @@ a:focus {
 .blog-content {
 	text-align: justify;
 }
+
+.center-image
+{
+  margin: 0 auto;
+  display: block;
+}
+
+.center-image-large
+{
+  margin: 0 auto;
+  display: block;
+  width: 100%;
+}
+

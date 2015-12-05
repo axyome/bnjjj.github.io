@@ -6,6 +6,7 @@ author: "Bnjjj"
 avatar: "img/authors/bnjjj.jpeg"
 image: "img/hackathonbnj.jpg"
 date:   2015-10-28 19:00:00
+public: true
 anchor: hackathons
 permalink: /hackathons
 ---
