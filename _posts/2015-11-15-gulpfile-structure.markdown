@@ -3,8 +3,8 @@ layout: posts
 title:  "Bien structurer ses tâches Gulp"
 subtitle: "Diverses optimisations pour vos tâches gulp."
 author: "Bnjjj (Benjamin Coenen)"
-avatar: "img/authors/bnjjj.jpeg"
-image: "img/gulp-logo.jpg"
+avatar: "/img/authors/bnjjj.jpeg"
+image: "/img/gulp-logo.jpg"
 date:   2015-11-14 19:00:00
 public: true
 anchor: structure-gulp
