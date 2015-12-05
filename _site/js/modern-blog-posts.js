@@ -152,6 +152,8 @@ var demo = (function(window, undefined) {
 
     var card = layout[id].card;
     var permalink = window.location.pathname.split('/')[1];
+    var newComments = document.createElement('div');
+    newComments.id = 'disqus_thread';
 
 
     // Prevent when card already open and user click on image.
@@ -168,6 +170,18 @@ var demo = (function(window, undefined) {
       if (!permalink) {
         history.pushState({}, null, window.location.href + imageElt.attr('class'));
       }
+      // var previousComment = document.getElementById('disqus_thread');
+      // console.log('previousComment', previousComment);
+      // if (previousComment) {
+      //   previousComment.parentNode.replaceChild(newComments, previousComment);
+      // }
+      // DISQUS.reset({
+      //   reload: true,
+      //   config: function () {
+      //     this.page.url = 'http://benjamincoenen.ovh/#!' + permalink;
+      //     this.page.identifier = permalink;
+      //   }
+      // });
       _setPatternBgImg(imageElt);
       sequence.add(tweenOtherCards);
       sequence.add(card.openCard(_onCardMove), 0);
