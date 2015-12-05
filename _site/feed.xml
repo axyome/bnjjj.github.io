@@ -5,19 +5,19 @@
     <description>A blog about me, my passion, my work as a software developer @OVH</description>
     <link>http://www.benjamincoenen.ovh/</link>
     <atom:link href="http://www.benjamincoenen.ovh/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Dec 2015 22:19:00 +0100</pubDate>
-    <lastBuildDate>Sat, 05 Dec 2015 22:19:00 +0100</lastBuildDate>
+    <pubDate>Sat, 05 Dec 2015 22:20:56 +0100</pubDate>
+    <lastBuildDate>Sat, 05 Dec 2015 22:20:56 +0100</lastBuildDate>
     <generator>Jekyll v3.0.0</generator>
     
       <item>
         <title>Bien structurer ses tâches Gulp</title>
         <description>&lt;p&gt;Bonjour à tous, aujourd’hui je vous propose un petit article sur la mise en place d’une structure de gulpfile pour gulp. Je ne vais pas expliquer le fonctionnement de gulp ni en quoi il est utile, la connaissance de gulp est donc un prérequis pour la lecture de cet article.&lt;/p&gt;
 
-&lt;p&gt;La question principale est : pourquoi avoir une bonne structure pour nos gulpfiles ? En fait, il n’y a que peu de temps que je me suis vraiment rendu compte de l’importance à optimiser au maximum le temps d’exécution de ces tâches automatiques, de build, de lint, etc… Car quand on travaille sur de petits projets perso avec peu de codes et process mis en place tout va bien. Mais une fois qu’on arrive avec un projet qui grandi et contient énormément de tâches et d’options, on a intérêt à optimiser ces systèmes d’automatisation avant que l’on devienne fou à attendre chaque rebuild du système. Evidemment quand on développe ou débug on a pas envie d’attendre à chaque fois 30 secondes que les tâches se terminent. Rien que sur une journée c’est une perte de temps considérable alors ne parlons même pas du temps perdu sur un projet entier.&lt;/p&gt;
+&lt;p&gt;La question principale est : pourquoi avoir une bonne structure pour nos gulpfiles ? En fait, il n’y a que peu de temps que je me suis vraiment rendu compte de l’importance à optimiser au maximum le temps d’exécution de ces tâches automatiques, de build, de lint, etc… Car quand on travaille sur de petits projets perso avec peu de codes et process mis en place tout va bien. Mais une fois qu’on arrive avec un projet qui grandi et contient énormément de tâches et d’options, on a intérêt à optimiser ces systèmes d’automatisation avant de devenir fou à attendre chaque rebuild du système. Evidemment quand on développe ou débug on n’a pas envie d’attendre à chaque fois 30 secondes que les tâches se terminent. Rien que sur une journée c’est une perte de temps considérable alors ne parlons même pas du temps perdu sur un projet entier.&lt;/p&gt;
 
 &lt;p&gt;C’est pour ces raisons que je me suis un peu attardé sur le problème et j’ai vraiment essayé de me faire un système modulaire, rapide tout en restant flexible. Attention, je n’ai pas la prétention de dire que la solution que je vous propose est la meilleure. Au contraire, écrire un article pour me permettre d’échanger à ce propos et trouver une meilleure solution est sûrement une de mes principales motivations.&lt;/p&gt;
 
-&lt;p&gt;Commençons par la structure des fichiers. J’ai décidé de séparer chaques tâches dans un fichier séparé et de placer tous ces fichiers dans un dossier nommé “&lt;em&gt;gulp-scripts&lt;/em&gt;”. Il y a plusieurs avantâges à organiser nos fichiers de cette manière. Puisque nos fichiers porteront le même nom que la tâche qui la contient on trouvera plus facilement notre tâche et si on ne l’utilise plus il suffit tout simplement de supprimer le fichier.
+&lt;p&gt;Commençons par la structure des fichiers. J’ai décidé de séparer chaque tâche dans un fichier séparé et de placer tous ces fichiers dans un dossier nommé “&lt;em&gt;gulp-scripts&lt;/em&gt;”. Il y a plusieurs avantâges à organiser nos fichiers de cette manière. Puisque nos fichiers porteront le même nom que la tâche qui la contient on trouvera plus facilement notre tâche et si on ne l’utilise plus il suffit tout simplement de supprimer le fichier.
 &lt;img src=&quot;/img/tree-gulpfile.jpg&quot; alt=&quot;tree&quot; class=&quot;center-image&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;On peut très bien aussi imaginer placer ces fichiers de tâches encore dans des autres sous dossiers en fonction de l’environnement de build (dev, prod, …). Mais pour faciliter l’explication je ne vais pas le mettre en application dans cet exemple. Notre gulpfile.js placé à la racine de notre projet va simplement nous servir pour importer (“&lt;em&gt;require&lt;/em&gt;”) toutes les tasks que l’on a créé dans le dossier “&lt;em&gt;gulp-scripts&lt;/em&gt;”. Il n’y a pas plus simple comme gulpfile principal.&lt;/p&gt;
