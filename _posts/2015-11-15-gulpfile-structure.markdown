@@ -19,7 +19,7 @@ La question principale est : pourquoi avoir une bonne structure pour nos gulpfil
 C'est pour ces raisons que je me suis un peu attardé sur le problème et j'ai vraiment essayé de me faire un système modulaire, rapide tout en restant flexible. Attention, je n'ai pas la prétention de dire que la solution que je vous propose est la meilleure. Au contraire, écrire un article pour me permettre d'échanger à ce propos et trouver une meilleure solution est sûrement une de mes principales motivations. 
 
 Commençons par la structure des fichiers. J'ai décidé de séparer chaques tâches dans un fichier séparé et de placer tous ces fichiers dans un dossier nommé "_gulp-scripts_". Il y a plusieurs avantâges à organiser nos fichiers de cette manière. Puisque nos fichiers porteront le même nom que la tâche qui la contient on trouvera plus facilement notre tâche et si on ne l'utilise plus il suffit tout simplement de supprimer le fichier.
-![tree](img/tree-gulpfile.jpg){: .center-image }
+![tree](/img/tree-gulpfile.jpg){: .center-image }
 
 On peut très bien aussi imaginer placer ces fichiers de tâches encore dans des autres sous dossiers en fonction de l'environnement de build (dev, prod, ...). Mais pour faciliter l'explication je ne vais pas le mettre en application dans cet exemple. Notre gulpfile.js placé à la racine de notre projet va simplement nous servir pour importer ("_require_") toutes les tasks que l'on a créé dans le dossier "_gulp-scripts_". Il n'y a pas plus simple comme gulpfile principal.
 
@@ -38,9 +38,9 @@ requireDir('./gulp-scripts', {recurse: true});
 
 Pour une tâche et donc un fichier il y a sa tâche et la tâche en watch associé. Celle que j'appelle watch c'est celle qui sera doté d'un watcher sur les fichiers concernés. C'est à dire que dès qu'on va changer ces fichiers ça relancera la tâche associée. Grâce à ces deux distinctions on va pouvoir créer des tâches personnalisées qui lie les tâches entre elles et on appellera leur "_:watch_" à l'intérieur. De cette façon lorsqu'on modifiera un fichier watché on ne va relancer que les tâches concernées. Grâce à ça nos tâches ne se relanceront que si elles sont concernées, et les autres ne seront pas relancées pour rien. Et ça c'est un point TRÈS important pour notre optimisation de temps et process.
 
-Voici un exemple si je modifie un fichier JavaScript : ![wath-js](img/jswatch.jpg){: .center-image-large }
+Voici un exemple si je modifie un fichier JavaScript : ![wath-js](/img/jswatch.jpg){: .center-image-large }
 
-Voici un exemple si je modifie un fichier HTML : ![wath-js](img/watchhtml.jpg){: .center-image-large }
+Voici un exemple si je modifie un fichier HTML : ![wath-js](/img/watchhtml.jpg){: .center-image-large }
 
 On peut s'appercevoir que mon gulp ne se lance que pour les fichiers concernés.
 
