@@ -9,6 +9,7 @@ date:   2015-10-28 19:00:00
 public: true
 anchor: hackathons
 permalink: /hackathons
+comments: true
 ---
 
 __Les hackathons__, ces concours qui font rêver les développeurs et qui deviennent de plus en plus courant. Plus un week-end ne se passe sans qu’il y en ait un. Aujourd’hui après avoir participé à une dizaine de ces concours et dans différents pays je pense qu’il peut être intéressant de faire un petit retour d’expérience les concernant.

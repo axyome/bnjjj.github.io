@@ -70,6 +70,32 @@ layout: compress
                                         {{ post.content }}
                                     </div>
                                     {% include twitter.html %}
+                                    {% if post.comments %}
+                                    <div id="disqus_thread"></div>
+                                    <script>
+                                    /**
+                                    * RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                                    * LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+                                    */
+                                    
+                                    var disqus_config = function () {
+                                        this.page.url = 'http://benjamincoenen.ovh';
+                                        this.page.identifier = '{{ post.anchor }}'; 
+                                    };
+                                    
+                                    (function () {
+                                        var d = document, s = d.createElement('script');
+                                        d.type = 'text/javascript';
+                                        d.async = true;
+
+                                        s.src = '//bnjjjsblog.disqus.com/embed.js';
+
+                                        s.setAttribute('data-timestamp', new Date());
+                                        (d.head || d.body).appendChild(s);
+                                    })();
+                                    </script>
+                                    <noscript>Veuillez activer JavaScript pour pouvoir visualiser les commentaires</noscript>
+                                    {% endif %}
                                 </div>
                             </div>
                         </div>
