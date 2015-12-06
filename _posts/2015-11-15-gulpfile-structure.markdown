@@ -12,7 +12,7 @@ permalink: /structure-gulp
 comments: true
 ---
 
-Bonjour à tous, aujourd'hui je vous propose un petit article sur la mise en place d'une structure de gulpfile pour gulp afin d'optimiser sa maintenabilité et sa rapidité. Je ne vais pas expliquer le fonctionnement de gulp ni en quoi il est utile, la connaissance de gulp est donc un prérequis pour la lecture de cet article.
+Bonjour à tous, aujourd'hui je vous propose un petit article sur la mise en place d'une structure de gulpfile pour gulp afin d'optimiser sa maintenabilité et sa rapidité. Je ne vais pas expliquer le fonctionnement de gulp ni en quoi il est utile, la connaissance de gulp est donc un pré-requis pour la lecture de cet article.
 
 La question principale est : pourquoi avoir une bonne structure pour nos gulpfiles ? En fait, il n'y a que peu de temps que je me suis vraiment rendu compte de l'importance à optimiser au maximum le temps d'exécution de ces tâches automatiques, de build, de lint, etc... Car quand on travaille sur de petits projets perso avec peu de codes et process mis en place tout va bien. Mais une fois qu'on arrive avec un projet qui grandit et contient énormément de tâches et d'options, on a intérêt à optimiser ces systèmes d'automatisation avant de devenir fou à attendre chaque rebuild du système. Evidemment quand on développe ou débug on n'a pas envie d'attendre à chaque fois 30 secondes que les tâches se terminent. Rien que sur une journée c'est une perte de temps considérable alors ne parlons même pas du temps perdu sur un projet entier.
 
